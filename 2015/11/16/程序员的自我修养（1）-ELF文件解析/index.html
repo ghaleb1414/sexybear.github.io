@@ -37,7 +37,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Linux," />
 
 
 
@@ -53,19 +53,55 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="description" content="ELF基本概念ELF是Linux平台下得可执行文件格式，全称是Executable Linkable Format，与window平台的PE文件格式相似，都是COFF(Common file format)格式的变种。  
+下面是ELF文件标准，主要分为四类。  
+
+
+
+ELF文件类型
+说明
+实例
+
+
+
+
+可重定位文件
+这类文件包含了代码和数据，可以被用来链接成可执行文件或者共享目标文件，静态链接">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2015/11/12/hello-world/index.html">
+<meta property="og:title" content="程序员的自我修养（1）---ELF文件解析">
+<meta property="og:url" content="http://yoursite.com/2015/11/16/程序员的自我修养（1）-ELF文件解析/index.html">
 <meta property="og:site_name" content="Wuwenxiao's Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2015-11-12T10:30:53.000Z">
+<meta property="og:description" content="ELF基本概念ELF是Linux平台下得可执行文件格式，全称是Executable Linkable Format，与window平台的PE文件格式相似，都是COFF(Common file format)格式的变种。  
+下面是ELF文件标准，主要分为四类。  
+
+
+
+ELF文件类型
+说明
+实例
+
+
+
+
+可重定位文件
+这类文件包含了代码和数据，可以被用来链接成可执行文件或者共享目标文件，静态链接">
+<meta property="og:updated_time" content="2015-11-16T07:14:32.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="程序员的自我修养（1）---ELF文件解析">
+<meta name="twitter:description" content="ELF基本概念ELF是Linux平台下得可执行文件格式，全称是Executable Linkable Format，与window平台的PE文件格式相似，都是COFF(Common file format)格式的变种。  
+下面是ELF文件标准，主要分为四类。  
+
+
+
+ELF文件类型
+说明
+实例
+
+
+
+
+可重定位文件
+这类文件包含了代码和数据，可以被用来链接成可执行文件或者共享目标文件，静态链接">
 
 
 
@@ -77,7 +113,7 @@ Quick">
   };
 </script>
 
-  <title> Hello World | Wuwenxiao's Blog </title>
+  <title> 程序员的自我修养（1）---ELF文件解析 | Wuwenxiao's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -227,7 +263,7 @@ Quick">
             
             
               
-                Hello World
+                程序员的自我修养（1）---ELF文件解析
               
             
           </h1>
@@ -236,19 +272,34 @@ Quick">
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-11-12T18:30:53+08:00" content="2015-11-12">
-              2015-11-12
+            <time itemprop="dateCreated" datetime="2015-11-16T11:30:34+08:00" content="2015-11-16">
+              2015-11-16
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/11/12/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/12/hello-world/" itemprop="commentsCount"></span>
+                <a href="/2015/11/16/程序员的自我修养（1）-ELF文件解析/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/16/程序员的自我修养（1）-ELF文件解析/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -267,33 +318,131 @@ Quick">
       
 
       
-        <span itemprop="articleBody"><p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <span itemprop="articleBody"><h2 id="ELF基本概念">ELF基本概念</h2><p>ELF是Linux平台下得可执行文件格式，全称是Executable Linkable Format，与window平台的PE文件格式相似，都是COFF(Common file format)格式的变种。  </p>
+<p>下面是ELF文件标准，主要分为四类。  </p>
+<table>
+<thead>
+<tr>
+<th>ELF文件类型</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:right">实例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>可重定位文件</td>
+<td style="text-align:center">这类文件包含了代码和数据，可以被用来<br>链接成可执行文件或者共享目标文件，<br>静态链接库也可以被归为这一类</td>
+<td style="text-align:right">Linux的.o<br> windows的.obj</td>
+</tr>
+<tr>
+<td>可执行文件</td>
+<td style="text-align:center">这类文件包含了可以直接执行的程序，<br>它的代表就是ELF可执行文件，他们一般<br>都没有扩展名</td>
+<td style="text-align:right">/bin/bash文件<br>  Windows的.exe</td>
+</tr>
+<tr>
+<td>共享目标文件</td>
+<td style="text-align:center">这种文件包含了代码和数据，可以在以下<br>两种情况下使用，一种是链接器可以使用<br>这种文件跟其他可重定位文件和共享目标<br>文件链接，产生新的目标文件。第二种是<br>动态链接器可以讲几个这种共享目标文件<br>与可执行文件结合，作为进程映像的一部分来运行</td>
+<td style="text-align:right">Linux的.so<br> Windows的DLL</td>
+</tr>
+<tr>
+<td>核心转储文件</td>
+<td style="text-align:center">当进程意外终止时，系统可以将该<br>进程的地址空间的内容以及终止时<br>的一些其他信息转储到核心转储文件</td>
+<td style="text-align:right">Linux下的core dump</td>
+</tr>
+</tbody>
+</table>
+<h2 id="目标文件的结构">目标文件的结构</h2><p>程序源代码编译后的机器指令经常被放在<strong>代码段</strong>里，代码段常见的名字有“.code”和“.text”,全局变量和局部静态变量数据经常被放在<strong>数据段</strong>里，数据段的一般名字都叫做“.data”。</p>
+<h3 id="为什么要把程序的指令和数据存放分开？">为什么要把程序的指令和数据存放分开？</h3><ol>
+<li>当程序被装载后，数据和指令分别被映射到两个虚存区域。数据区域是支持读写的，指令区域是只读的，所以这两个区域的权限可以被分别设置成可读写和只读的，这样可以防止程序的指令有意无意的被改写。</li>
+<li>对于现代CPU的缓存体系，指令区和数据区的分离有利于提高程序的局部性。现代CPU的缓存一般都被设计成数据缓存和指令缓存分离，所以程序的指令和数据被分开存放对CPU的缓存命中率提高有好处。</li>
+<li>当系统中运行者多个该程序的副本时，它们的指令都是一样的，所以内存中只需要保存一份该程序的指令部分。</li>
+</ol>
+<h2 id="具体分析">具体分析</h2><p>xxx.o  使用objdump工具来查看文件结构，包括代码段，数据段，BSS段，以及只读数据段，注释信息段，堆栈提示段，结构如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">other data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">.comment</td>
+</tr>
+<tr>
+<td style="text-align:center">.rodata</td>
+</tr>
+<tr>
+<td style="text-align:center">.data</td>
+</tr>
+<tr>
+<td style="text-align:center">.text</td>
+</tr>
+<tr>
+<td style="text-align:center">ELF Header</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>.data段里保存的是已经初始化了的全局静态变量和局部静态变量。</li>
+<li>.rodata段里存放的是只读数据。一般是程序里的只读变量和字符串变量。</li>
+<li>.bss段存放的是未初始化的全局变量和局部静态变量。</li>
+</ul>
+<h2 id="ELF文件结构">ELF文件结构</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">ELF Header</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">.text</td>
+</tr>
+<tr>
+<td style="text-align:center">.data</td>
+</tr>
+<tr>
+<td style="text-align:center">.bss</td>
+</tr>
+<tr>
+<td style="text-align:center">…<br>other sections</td>
+</tr>
+<tr>
+<td style="text-align:center">Section header table</td>
+</tr>
+<tr>
+<td style="text-align:center">String Tables<br>Symbol Tables<br>…</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>ELF的文件头中定义了ELF魔数，文件机器字节长度，数据存储方式，版本，运行平台，ABI版本，ELF重定位类型，硬件平台，硬件平台版本，入口地址，程序头入口长度，段表的位置和长度及段的数量等。</li>
+<li>段表(section header table)是用来保存ELF中各种段的基本属性的数据结构。描述了哥哥段的信息，比如每个段的段名，段的长度，在文件中的便宜，读写权限以及段的其他属性。ELF的段结构就是由段表决定的，编译器，链接器以及装载器都是依靠段表来定位和访问各个段的属性的。</li>
+<li>字符串表分为字符串表和段表字符串表，字符串表用于保存普通的字符串，段表字符串表用来保存段表中用到的字符串。</li>
+</ul>
 </span>
       
     </div>
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag">#Linux</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2015/11/13/第一篇/" rel="next" title="第一篇">
+                <i class="fa fa-chevron-left"></i> 第一篇
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/11/13/第一篇/" rel="prev" title="第一篇">
-                第一篇 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -343,8 +492,8 @@ Quick">
         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/11/12/hello-world/"
-           data-title="Hello World" data-url="http://yoursite.com/2015/11/12/hello-world/">
+      <div class="ds-thread" data-thread-key="2015/11/16/程序员的自我修养（1）-ELF文件解析/"
+           data-title="程序员的自我修养（1）---ELF文件解析" data-url="http://yoursite.com/2015/11/16/程序员的自我修养（1）-ELF文件解析/">
       </div>
     
   </div>
@@ -452,7 +601,7 @@ Quick">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick_Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create_a_new_post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run_server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate_static_files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy_to_remote_sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ELF基本概念"><span class="nav-number">1.</span> <span class="nav-text">ELF基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目标文件的结构"><span class="nav-number">2.</span> <span class="nav-text">目标文件的结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要把程序的指令和数据存放分开？"><span class="nav-number">2.1.</span> <span class="nav-text">为什么要把程序的指令和数据存放分开？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体分析"><span class="nav-number">3.</span> <span class="nav-text">具体分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ELF文件结构"><span class="nav-number">4.</span> <span class="nav-text">ELF文件结构</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
